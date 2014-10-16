@@ -7,6 +7,6 @@
 #	vimrc
 #
 #   Specific:
-#	awesome configs
+#	awesome rc.lua
 
 echo "No deployment code implemented yet!"
