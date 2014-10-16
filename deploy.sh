@@ -1,8 +1,12 @@
 #!/bin/bash
 
 #List of compatible configs:
+#
+#   Universal:
 #	bashrc
 #	vimrc
-#	awesome rc.lua
+#
+#   Specific:
+#	awesome configs
 
 echo "No deployment code implemented yet!"
