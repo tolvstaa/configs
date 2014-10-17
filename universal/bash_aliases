@@ -1,1 +1,2 @@
 alias ls='ls --color=auto'
+alias yaourt-update='yaourt -Sbu --aur'
