@@ -6,4 +6,5 @@ Configuration files for various programs. Use deploy.sh to automagically replace
 Current supported config files:
   .vimrc
   .bashrc
+  .bash_aliases
   rc.lua (awesome WM)

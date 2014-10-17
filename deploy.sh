@@ -4,6 +4,7 @@
 #
 #   Universal:
 #	bashrc
+#	bash_aliases
 #	vimrc
 #
 #   Specific:
