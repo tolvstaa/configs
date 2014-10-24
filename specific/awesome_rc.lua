@@ -89,7 +89,9 @@ end
 -- }}}
 
 -- {{{ Menu
--- Create a laucher widget and a main menu
+-- Create a laucher widget and menus
+
+
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -97,7 +99,31 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+settingsmenu = {
+   { "lxappearance", "lxappearance" },
+   { "arandr", "arandr" }
+}
+
+browsermenu = {
+   { "Chrome", "google-chrome-browser" },
+   { "Incognito", "google-chrome-browser --incognito" },
+   { "Firefox", "firefox" }
+}
+
+graphicsmenu = {
+   { "Gimp", "gimp" },
+   { "Blender 2.72a", "blender" }
+}
+
+networkmenu = {
+   { "Filezilla", "filezilla" }
+}
+
+mymainmenu = awful.menu({ items = { { "awesome utilities", myawesomemenu, beautiful.awesome_icon },
+                                    { "browser", browsermenu },
+                                    { "graphics", graphicsmenu },
+                                    { "network", networkmenu },
+                                    { "settings", settingsmenu },
                                     { "open terminal", terminal }
                                   }
                         })
