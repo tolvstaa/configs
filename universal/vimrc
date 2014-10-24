@@ -3,3 +3,4 @@ set number
 set showmatch
 set background=dark
 set mouse=a
+set backspace=2
