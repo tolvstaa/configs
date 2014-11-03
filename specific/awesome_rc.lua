@@ -39,7 +39,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.init("/usr/share/awesome/themes/defaultered/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "gnome-terminal"
@@ -101,12 +101,13 @@ myawesomemenu = {
 
 settingsmenu = {
    { "lxappearance", "lxappearance" },
-   { "arandr", "arandr" }
+   { "arandr", "arandr" },
+   { "disk usage", "baobab"}
 }
 
 browsermenu = {
-   { "Chrome", "google-chrome-browser" },
-   { "Incognito", "google-chrome-browser --incognito" },
+   { "Chrome", "google-chrome-stable" },
+   { "Incognito", "google-chrome-stable --incognito" },
    { "Firefox", "firefox" }
 }
 
@@ -119,14 +120,14 @@ networkmenu = {
    { "Filezilla", "filezilla" }
 }
 
-mymainmenu = awful.menu({ items = { { "awesome utilities", myawesomemenu, beautiful.awesome_icon },
-                                    { "browser", browsermenu },
+mymainmenu = awful.menu({ items = { { "browser", browsermenu },
                                     { "graphics", graphicsmenu },
                                     { "network", networkmenu },
                                     { "settings", settingsmenu },
 									{ "volume control", volume_control},
-                                    { "open terminal", terminal }
-                                  }
+									{ "awesome utilities", myawesomemenu, beautiful.awesome_icon }
+
+							}
                         })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
@@ -315,7 +316,7 @@ globalkeys = awful.util.table.join(
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    awful.key({ modkey,			  }, "F4",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
