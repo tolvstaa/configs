@@ -45,7 +45,7 @@ beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
-
+volume_control = "pavucontrol"
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -124,6 +124,7 @@ mymainmenu = awful.menu({ items = { { "awesome utilities", myawesomemenu, beauti
                                     { "graphics", graphicsmenu },
                                     { "network", networkmenu },
                                     { "settings", settingsmenu },
+									{ "volume control", volume_control},
                                     { "open terminal", terminal }
                                   }
                         })
