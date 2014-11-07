@@ -115,6 +115,12 @@ graphicsmenu = {
    { "Gimp", "gimp" },
    { "Blender 2.72a", "blender" }
 }
+
+develmenu = {
+   { "kile", "kile" },
+   { "VirtualBox", "virtualbox" }
+}
+
 musicmenu = {
    { "Deadbeef", "deadbeef" },
    { "visualizer", "projectM-pulseaudio" }
@@ -125,8 +131,9 @@ networkmenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "browser", browsermenu },
-                                    { "graphics", graphicsmenu },
                                     { "network", networkmenu },
+									{ "development", develmenu },
+                                    { "graphics", graphicsmenu },
                                     { "settings", settingsmenu },
 									{ "music", musicmenu },
 									{ "volume control", volume_control},
