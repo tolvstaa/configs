@@ -123,7 +123,9 @@ develmenu = {
 
 musicmenu = {
    { "Deadbeef", "deadbeef" },
-   { "visualizer", "projectM-pulseaudio" }
+   { "visualizer", "projectM-pulseaudio" },
+   { "ardour" , "ardour3" },
+   { "jack server" , "qjackctl" }
 }
 
 networkmenu = {
