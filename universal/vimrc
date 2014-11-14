@@ -1,4 +1,5 @@
 syntax enable
+set number
 set relativenumber
 set showmatch
 set background=dark
