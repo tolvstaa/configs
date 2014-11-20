@@ -102,7 +102,8 @@ myawesomemenu = {
 settingsmenu = {
    { "lxappearance", "lxappearance" },
    { "arandr", "arandr" },
-   { "disk usage", "baobab"}
+   { "disk usage", "baobab"},
+   { "system monitor" , "gnome-system-monitor" }
 }
 
 browsermenu = {
@@ -125,7 +126,8 @@ musicmenu = {
    { "Deadbeef", "deadbeef" },
    { "visualizer", "projectM-pulseaudio" },
    { "ardour" , "ardour3" },
-   { "jack server" , "qjackctl" }
+   { "jack server" , "qjackctl" },
+   { "musescore" , "mscore" }
 }
 
 networkmenu = {
