@@ -46,6 +46,8 @@ terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 volume_control = "pavucontrol"
+browser = "google-chrome-stable"
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -100,6 +102,7 @@ myawesomemenu = {
 }
 
 settingsmenu = {
+   { "htop" , terminal .. " -e htop" },
    { "lxappearance", "lxappearance" },
    { "arandr", "arandr" },
    { "disk usage", "baobab"},
@@ -107,14 +110,15 @@ settingsmenu = {
 }
 
 browsermenu = {
-   { "Chrome", "google-chrome-stable" },
-   { "Incognito", "google-chrome-stable --incognito" },
+   { "Chrome", browser },
+   { "Incognito", browser .. " --incognito" },
    { "Firefox", "firefox" }
 }
 
 graphicsmenu = {
    { "Gimp", "gimp" },
-   { "Blender 2.72a", "blender" }
+   { "Blender 2.72a", "blender" },
+   { "ASCII converter", terminal .. " -e jp2a" }
 }
 
 develmenu = {
@@ -304,7 +308,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-	awful.key({ modkey,	          }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
+	awful.key({ modkey,	          }, "l", function () awful.util.spawn( "xscreensaver-command -lock") end),
+    awful.key({ modkey,           }, "b", function () awful.util.spawn( browser ) end),
 
     --awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     --awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
