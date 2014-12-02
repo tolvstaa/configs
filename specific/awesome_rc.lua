@@ -47,6 +47,7 @@ editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 volume_control = "pavucontrol"
 browser = "google-chrome-stable"
+files = "nemo"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -129,9 +130,10 @@ develmenu = {
 musicmenu = {
    { "Deadbeef", "deadbeef" },
    { "visualizer", "projectM-pulseaudio" },
+   { "musescore" , "mscore" },
+   { "audacity", "audacity" },
    { "ardour" , "ardour3" },
-   { "jack server" , "qjackctl" },
-   { "musescore" , "mscore" }
+   { "jack server" , "qjackctl" }
 }
 
 networkmenu = {
@@ -144,6 +146,9 @@ mymainmenu = awful.menu({ items = { { "browser", browsermenu },
                                     { "graphics", graphicsmenu },
                                     { "settings", settingsmenu },
 									{ "music", musicmenu },
+									{ "files", files },
+									{ "terminal", terminal },
+									{ "retro terminal", "cool-retro-term" },
 									{ "volume control", volume_control},
 									{ "awesome utilities", myawesomemenu, beautiful.awesome_icon }
 
