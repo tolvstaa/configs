@@ -106,7 +106,9 @@ settingsmenu = {
    { "htop" , terminal .. " -e htop" },
    { "lxappearance", "lxappearance" },
    { "arandr", "arandr" },
+   { "nvidia control panel", "nvidia-settings" },
    { "disk usage", "baobab"},
+   { "disk utility", "gnome-disks" },
    { "system monitor" , "gnome-system-monitor" }
 }
 
