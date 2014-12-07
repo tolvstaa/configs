@@ -109,7 +109,8 @@ settingsmenu = {
    { "nvidia control panel", "nvidia-settings" },
    { "disk usage", "baobab"},
    { "disk utility", "gnome-disks" },
-   { "system monitor" , "gnome-system-monitor" }
+   { "system monitor" , "gnome-system-monitor" },
+   { "CUPS printing" , "sudo system-config-printer" }
 }
 
 browsermenu = {
@@ -121,6 +122,7 @@ browsermenu = {
 graphicsmenu = {
    { "Gimp", "gimp" },
    { "Blender 2.72a", "blender" },
+   { "Lightworks", "lightworks" },
    { "ASCII converter", terminal .. " -e jp2a" }
 }
 
