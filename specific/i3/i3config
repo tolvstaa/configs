@@ -152,11 +152,12 @@ mode "resize" {
 
 bindsym $mod+d mode "resize"
 
+# Backgrounds
+exec --no-startup-id nitrogen
+
+# Program shortcuts
 bindsym $mod+l exec xscreensaver-command -lock
 bindsym $mod+b exec google-chrome-stable
-
-# Start Nitrogen for desktop backgrounds
-exec --no-startup-id nitrogen
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
