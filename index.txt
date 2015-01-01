@@ -2,6 +2,7 @@
   bash_aliases          ~/.bash_aliases
   bashrc                .bashrc
   vimrc                 .vimrc
+  htoprc                .config/htop/htoprc
 
 #specific
   #awesome
