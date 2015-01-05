@@ -2,10 +2,7 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-# ANSI color codes
+  # ANSI color codes
 RS="\033[0m"    # reset
 HC="\033[1m"    # hicolor
 UL="\033[4m"    # underline
@@ -29,6 +26,13 @@ BWHT="\033[47m" # background white
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+  #SSH keys
+if [ -z $(pidof gpg-agent) ]; then
+	keychain -q --nogui ~/.ssh/avalarch_rsa
+	keychain -q --nogui ~/.ssh/github_rsa
+	keychain -q --nogui ~/.ssh/osl_ash_rsa
 fi
 
 #PS1='[\u@\h \W]\$ '
