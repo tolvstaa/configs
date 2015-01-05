@@ -28,7 +28,7 @@ font pango:Arial Regular 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+F4 kill
@@ -89,6 +89,8 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+new_window 1pixel
 
 # switch to workspace
 bindsym $mod+1 workspace 1
