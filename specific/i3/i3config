@@ -158,7 +158,8 @@ bindsym $mod+d mode "resize"
 exec --no-startup-id nitrogen
 
 # Program shortcuts
-bindsym $mod+l exec xscreensaver-command -lock
+#bindsym $mod+l exec xscreensaver-command -lock
+bindsym $mod+l exec i3lock
 bindsym $mod+b exec google-chrome-stable
 
 # Start i3bar to display a workspace bar (plus the system information i3status
