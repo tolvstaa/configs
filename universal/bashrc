@@ -35,6 +35,13 @@ if [ -z $(pidof gpg-agent) ]; then
 	keychain -q --nogui ~/.ssh/osl_ash_rsa
 fi
 
+if [ $(id -u) = 0 ]
+then
+	promptchar="#"
+else
+	promptchar="$"
+fi
+
 #PS1='[\u@\h \W]\$ '
 #PS1='\u@\h:\w\$ '
-PS1="\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\w\[${RS}\]\$ "
+PS1="\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\w\[${RS}\]${promptchar} "
