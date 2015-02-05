@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ $(echo $USER) = "andy" ]
+if [ $(echo $USER) = "andy" ] || [ $(echo $USER) = "tolvstaa" ]
 then
 	scrot /tmp/i3lockscrot.png
 	mogrify -blur 0x8 /tmp/i3lockscrot.png
