@@ -174,8 +174,10 @@ mode "resize" {
 
 bindsym $mod+d mode "resize"
 
-# Backgrounds
+# Startup programs
 exec --no-startup-id nitrogen
+exec nm-applet
+exec dropbox start
 
 # Program shortcuts
 #bindsym $mod+l exec xscreensaver-command -lock
