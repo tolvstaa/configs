@@ -177,7 +177,7 @@ bindsym $mod+d mode "resize"
 # Startup programs
 exec --no-startup-id nitrogen
 exec nm-applet
-exec dropbox start
+exec dropboxd
 
 # Program shortcuts
 #bindsym $mod+l exec xscreensaver-command -lock
