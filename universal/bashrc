@@ -29,10 +29,12 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
   #SSH keys
-if [ -z $(pidof gpg-agent) ]; then
-	keychain -q --nogui ~/.ssh/avalarch_rsa
-	keychain -q --nogui ~/.ssh/github_rsa
-	keychain -q --nogui ~/.ssh/osl_ash_rsa
+if which keychain; then
+	if [ -z $(pidof gpg-agent) ]; then
+		keychain -q --nogui ~/.ssh/avalarch_rsa
+		keychain -q --nogui ~/.ssh/github_rsa
+		keychain -q --nogui ~/.ssh/osl_ash_rsa
+	fi
 fi
 
 if [ $(id -u) = 0 ]
