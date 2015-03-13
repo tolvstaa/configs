@@ -1,0 +1,5 @@
+if [ -z ~/.i3/geni3.sh ]; then
+	~/.i3/geni3.sh > ~/.i3/config
+fi
+
+exec i3
