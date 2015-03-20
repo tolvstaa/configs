@@ -28,20 +28,19 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ "$HOSTNAME" == "blue" || "$HOSTNAME" == "pink" ]; then
+if [ "$HOSTNAME" = "blue" ] || [ "$HOSTNAME" = "pink" ]; then
 	#OSL Host stuff
 	keychain -q --nogui ~/.ssh/id_rsa
 	keychain -q --nogui ~/.ssh/id_rsa-fir
 
 	function fsh () {
-    	ssh -t -i ~/.ssh/id_rsa-fir fir "sudo bash -i -c \"ssh $@\""
+		ssh -t -i ~/.ssh/id_rsa-fir fir "sudo bash -i -c \"ssh $@\""
 	}
-
 	alias ldapvi='ldapvi -D uid=tolvstaa,ou=People,dc=osuosl,dc=org -h ldaps://ldap1.osuosl.org'
 	alias ff='ssh -t fir sudo vim /root/.../firfile'
 fi
 
-if [ "$HOSTNAME" == "avalon-arch" ]; then
+if [ "$HOSTNAME" = "avalon-arch" ]; then
 	#Avalon stuff
 	if [ -z $(pidof gpg-agent) ]; then
 		keychain -q --nogui ~/.ssh/avalarch_rsa
