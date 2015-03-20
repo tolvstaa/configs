@@ -28,16 +28,26 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+alias ls='ls -l --color=auto'
+alias grep='grep -E --color'
+
 if [ "$HOSTNAME" = "blue" ] || [ "$HOSTNAME" = "pink" ]; then
 	#OSL Host stuff
+	export HISTFILESIZE=10000000000
+	export HISTTIMEFORMAT="%F %T "
+	
 	keychain -q --nogui ~/.ssh/id_rsa
 	keychain -q --nogui ~/.ssh/id_rsa-fir
 
 	function fsh () {
 		ssh -t -i ~/.ssh/id_rsa-fir fir "sudo bash -i -c \"ssh $@\""
 	}
+	
 	alias ldapvi='ldapvi -D uid=tolvstaa,ou=People,dc=osuosl,dc=org -h ldaps://ldap1.osuosl.org'
+	alias gfr='git fetch && git rebase remotes/origin/master'
 	alias ff='ssh -t fir sudo vim /root/.../firfile'
+	alias vpn='sudo openvpn ~/.openvpn/openvpn.conf'
+	alias mr="mr -j 8 $@"
 fi
 
 if [ "$HOSTNAME" = "avalon-arch" ]; then
