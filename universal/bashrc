@@ -32,7 +32,7 @@ alias ls='ls -l --color=auto'
 alias grep='grep -E --color'
 
 function auto_ssh_key() {
-	for key in $(ls ~/.ssh | grep -E 'rsa[^\.]*$'); do
+	for key in $(command ls -1 ~/.ssh | grep -E 'rsa[^\.]*$'); do
 		keychain -q --nogui ~/.ssh/$key
 	done
 }
