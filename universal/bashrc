@@ -59,7 +59,7 @@ elif [ "$HOSTNAME" = "avalon-arch" ]; then
 		auto_ssh_key
 	fi
 else
-	if [ which keychain ]; then
+	if which keychain; then
 		auto_ssh_key
 	fi
 fi
