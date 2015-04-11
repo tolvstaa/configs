@@ -166,7 +166,6 @@ echo bindsym \$mod+d mode \"resize\"
 
 # Startup programs
 echo "
-exec --no-startup-id nitrogen
 exec nm-applet
 exec dropboxd"
 
