@@ -28,6 +28,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.keychain/$HOSTNAME-sh ]; then # Fix gpg issue regardless of host
+	. ~/.keychain/$HOSTNAME-sh
+fi
+
 alias ls='ls -l --color=auto'
 alias grep='grep -E --color'
 
@@ -62,10 +66,6 @@ else
 	if which keychain; then
 		auto_ssh_key
 	fi
-fi
-
-if [ -a ~/.keychain/$HOSTNAME-sh ] then # Fix gpg issue regardless of host
-	. ~/.keychain/$HOSTNAME-sh
 fi
 
 if [ $(id -u) = 0 ]
