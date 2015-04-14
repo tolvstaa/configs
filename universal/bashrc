@@ -64,6 +64,10 @@ else
 	fi
 fi
 
+if [ -a ~/.keychain/$HOSTNAME-sh ] then # Fix gpg issue regardless of host
+	. ~/.keychain/$HOSTNAME-sh
+fi
+
 if [ $(id -u) = 0 ]
 then
 	promptchar="#"
