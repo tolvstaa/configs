@@ -28,6 +28,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.keychain/$HOSTNAME-sh ]; then # Fix gpg issue regardless of host
+	. ~/.keychain/$HOSTNAME-sh
+fi
+
 alias ls='ls -l --color=auto'
 alias grep='grep -E --color'
 
@@ -59,7 +63,7 @@ elif [ "$HOSTNAME" = "avalon-arch" ]; then
 		auto_ssh_key
 	fi
 else
-	if which keychain; then
+	if which keychain 2>/dev/null; then
 		auto_ssh_key
 	fi
 fi
