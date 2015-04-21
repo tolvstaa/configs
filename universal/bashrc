@@ -41,7 +41,7 @@ function auto_ssh_key() {
 	done
 }
 	
-if [ "$HOSTNAME" = "blue" ] || [ "$HOSTNAME" = "pink" ]; then
+if [ "$HOSTNAME" = "blue" ] || [ "$HOSTNAME" = "pink" ] || [ "$HOSTNAME" = "taupe" ]; then
 	#OSL Host stuff
 	export HISTFILESIZE=10000000000
 	export HISTTIMEFORMAT="%F %T "
