@@ -4,3 +4,4 @@ alias ls='ls --color=auto'
 alias ccat='spc' #p~
 alias yaourt-update='yaourt -Sbu --aur --noconfirm' #p~
 alias aliases='~/scripts/print_aliases.sh' #p~
+alias pacman='sudo pacman'
