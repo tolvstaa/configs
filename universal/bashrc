@@ -25,7 +25,8 @@ BCYN="\033[46m" # background cyan
 BWHT="\033[47m" # background white
 
 
-# Universal
+WORKSTATIONS="aqua blue cyan diamond emerald honey neon orange pink silver taupe violet xray yellow"
+
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -34,23 +35,17 @@ if [ -f ~/.keychain/$HOSTNAME-sh ]; then # Fix gpg issue regardless of host
 	. ~/.keychain/$HOSTNAME-sh
 fi
 
-if which vim &>/dev/null; then
-	export EDITOR=vim
-fi
-
 alias ls='ls -l --color=auto'
 alias grep='grep -E --color'
 
-
-#Host-specific
 auto_ssh_key() {
 	for key in $(command ls -1 ~/.ssh | grep -E 'rsa[^\.]*$'); do
 		keychain -q --nogui ~/.ssh/$key
 	done
 }
 
-WORKSTATIONS="aqua blue cyan diamond emerald honey neon orange pink silver taupe violet xray yellow"
 if [[ $WORKSTATIONS =~ $(hostname) ]]; then
+	#OSL Host stuff
 	export HISTFILESIZE=10000000000
 	export HISTTIMEFORMAT="%F %T "
 	
@@ -65,19 +60,17 @@ if [[ $WORKSTATIONS =~ $(hostname) ]]; then
 	alias ff='ssh -t fir sudo vim /root/.../firfile'
 	alias vpn='sudo openvpn ~/.openvpn/openvpn.conf'
 	alias mr="mr -j 8 $@"
-
 elif [[ $(hostname) = "avalon-arch" ]]; then
+	#Avalon stuff
 	if [ -z $(pidof gpg-agent) ]; then
 		auto_ssh_key
 	fi
-
 else
 	if which keychain &>/dev/null; then
 		auto_ssh_key
 	fi
 fi
 
-# PS1 Config
 if [ $(id -u) = 0 ]
 then
 	promptchar="#"
@@ -88,8 +81,14 @@ fi
 __git_ps1() {
 	local b="$(git symbolic-ref --short HEAD 2>/dev/null)";
 	if [ -n "$b" ]; then
-		echo -e "[${FYEL}${b}${RS}]";
+		if [ $(echo "b" | wc -m) > 16 ]; then
+			b=$(echo $b | tail -c 16)
+			echo -e "[${FYEL}…${b}${RS}]"
+		else
+			echo -e "[${FYEL}${b}${RS}]"
+		fi
 	fi
 }
+
 
 PS1="(\$(date "+%H:%M:%S"))\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\w\[${RS}\]\$(__git_ps1)${promptchar} "
