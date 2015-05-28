@@ -92,4 +92,4 @@ __git_ps1() {
 	fi
 }
 
-PS1="\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\w\[${RS}\]\$(__git_ps1)${promptchar} "
+PS1="(\$(date "+%H:%M:%S"))\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\w\[${RS}\]\$(__git_ps1)${promptchar} "
