@@ -182,6 +182,7 @@ exec dropboxd
 # Program shortcuts
 #bindsym $mod+l exec xscreensaver-command -lock
 bindsym $mod+l exec ~/.i3/i3lockscript.sh
+bindsym $mod+Shift+l exec i3lock -c 000000
 bindsym $mod+b exec google-chrome-stable
 bindsym $mod+n exec google-chrome-stable --incognito
 
