@@ -1,12 +1,7 @@
 #!/bin/bash
 #if [ $(echo $USER) = "andy" ] || [ $(echo $USER) = "tolvstaa" ]
 
-which mogrify
-installed="$?"
-which mogrify
-installed=(($installed + $?))
-
-if [ "$installed" -eq "0" ]
+if which mogrify &> /dev/null
 then
 	scrot /tmp/i3lockscrot.png
 	mogrify -spread 10 -blur 0x8 -level -5% /tmp/i3lockscrot.png
