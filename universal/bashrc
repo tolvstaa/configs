@@ -78,17 +78,35 @@ else
 	promptchar="$"
 fi
 
-__git_ps1() {
-	local b="$(git symbolic-ref --short HEAD 2>/dev/null)";
-	if [ -n "$b" ]; then
-		if [ "$(echo "$b" | wc -m)" -gt 16 ]; then
-			b=$(echo $b | tail -c 16)
-			echo -e "[${FYEL}…${b}${RS}]"
+
+prompt_command() {
+	local newPWD=""
+
+	if [ $HOME == $PWD ]; then
+		newPWD="~"
+	elif [ $HOME ==  ${PWD:0:${#HOME}} ]; then
+		newPWD="~${PWD:${#HOME}}"
+	else
+		newPWD=$PWD
+	fi
+
+	if [ "${#newPWD}" -gt "$(( $COLUMNS / 3 ))" ]; then
+		newPWD=${PWD##*/}
+	fi
+
+
+	local _git="$(git symbolic-ref --short HEAD 2>/dev/null)";
+	if [ -n "$_git" ]; then
+		if [ "$(echo "$_git" | wc -m)" -gt 16 ]; then
+			_git=$(echo $_git | tail -c 16)
+			_git="[${FYEL}…${b}${RS}]"
 		else
-			echo -e "[${FYEL}${b}${RS}]"
+			_git="[${FYEL}${b}${RS}]"
 		fi
 	fi
+
+
+	PS1="(\$(date "+%H:%M"))\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]${newPWD}\[${RS}\]\${_git}${promptchar} "
 }
 
-
-PS1="(\$(date "+%H:%M"))\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\w\[${RS}\]\$(__git_ps1)${promptchar} "
+PROMPT_COMMAND=prompt_command
