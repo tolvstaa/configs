@@ -80,7 +80,9 @@ fi
 
 
 prompt_command() {
+	# autoshrink pwd
 	local newPWD=""
+	local fracLim=4
 
 	if [ $HOME == $PWD ]; then
 		newPWD="~"
@@ -90,11 +92,14 @@ prompt_command() {
 		newPWD=$PWD
 	fi
 
-	if [ "${#newPWD}" -gt "$(( $COLUMNS / 3 ))" ]; then
-		newPWD=${PWD##*/}
-	fi
-
-
+	local fields=$(echo $newPWD | awk 'BEGIN{FS="/"};{print NF}')
+	
+	while [ "${#newPWD}" -gt "$(( COLUMNS / fracLim ))" ] && [ "$fields" -gt "0" ]; do
+		newPWD=$( echo $newPWD | cut -d"/" -f 2- )
+		fields=$((fields - 1))
+	done
+	
+	# auto-git
 	local _git="$(git symbolic-ref --short HEAD 2>/dev/null)";
 	if [ -n "$_git" ]; then
 		if [ "$(echo "$_git" | wc -m)" -gt 16 ]; then
