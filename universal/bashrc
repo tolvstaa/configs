@@ -100,18 +100,18 @@ prompt_command() {
 	done
 	
 	# auto-git
-	local _git="$(git symbolic-ref --short HEAD 2>/dev/null)";
-	if [ -n "$_git" ]; then
-		if [ "$(echo "$_git" | wc -m)" -gt 16 ]; then
-			_git=$(echo $_git | tail -c 16)
-			_git="[${FYEL}…${b}${RS}]"
+	local mygit="$(git symbolic-ref --short HEAD 2>/dev/null)";
+	if [ -n "$mygit" ]; then
+		if [ "$(echo "$mygit" | wc -m)" -gt 16 ]; then
+			mygit=$(echo $mygit | tail -c 16)
+			mygit="[${FYEL}…${mygit}${RS}]"
 		else
-			_git="[${FYEL}${b}${RS}]"
+			mygit="[${FYEL}${mygit}${RS}]"
 		fi
 	fi
 
 
-	PS1="(\$(date "+%H:%M"))\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]${newPWD}\[${RS}\]\${_git}${promptchar} "
+	PS1="(\$(date "+%H:%M"))\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]${newPWD}\[${RS}\]${mygit}${promptchar} "
 }
 
 PROMPT_COMMAND=prompt_command
