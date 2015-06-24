@@ -83,9 +83,9 @@ _pwd_ps1() {
 	local newPWD=""
 	local fracLim=4
 
-	if [ $HOME == $PWD ]; then
+	if [ "$HOME" == "$PWD" ]; then
 		newPWD="~"
-	elif [ $HOME == ${PWD:0:${#HOME}} ]; then
+	elif [ "$HOME" == "${PWD:0:${#HOME}}" ]; then
 		newPWD="~${PWD:${#HOME}}"
 	else
 		newPWD=$PWD
