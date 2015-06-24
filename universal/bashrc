@@ -3,26 +3,26 @@
 #
 
   # ANSI color codes
-RS="\033[0m"    # reset
-HC="\033[1m"    # hicolor
-UL="\033[4m"    # underline
-INV="\033[7m"   # inverse background and foreground
-FBLK="\033[30m" # foreground black
-FRED="\033[31m" # foreground red
-FGRN="\033[32m" # foreground green
-FYEL="\033[33m" # foreground yellow
-FBLE="\033[34m" # foreground blue
-FMAG="\033[35m" # foreground magenta
-FCYN="\033[36m" # foreground cyan
-FWHT="\033[37m" # foreground white
-BBLK="\033[40m" # background black
-BRED="\033[41m" # background red
-BGRN="\033[42m" # background green
-BYEL="\033[43m" # background yellow
-BBLE="\033[44m" # background blue
-BMAG="\033[45m" # background magenta
-BCYN="\033[46m" # background cyan
-BWHT="\033[47m" # background white
+RS="\e[0m"    # reset
+HC="\e[1m"    # hicolor
+UL="\e[4m"    # underline
+INV="\e[7m"   # inverse background and foreground
+FBLK="\e[30m" # foreground black
+FRED="\e[31m" # foreground red
+FGRN="\e[32m" # foreground green
+FYEL="\e[33m" # foreground yellow
+FBLE="\e[34m" # foreground blue
+FMAG="\e[35m" # foreground magenta
+FCYN="\e[36m" # foreground cyan
+FWHT="\e[37m" # foreground white
+BBLK="\e[40m" # background black
+BRED="\e[41m" # background red
+BGRN="\e[42m" # background green
+BYEL="\e[43m" # background yellow
+BBLE="\e[44m" # background blue
+BMAG="\e[45m" # background magenta
+BCYN="\e[46m" # background cyan
+BWHT="\e[47m" # background white
 
 
 WORKSTATIONS="aqua blue cyan diamond emerald honey neon orange pink silver taupe violet xray yellow"
@@ -71,12 +71,6 @@ else
 	fi
 fi
 
-if [ $(id -u) = 0 ]
-then
-	promptchar="#"
-else
-	promptchar="$"
-fi
 
 
 prompt_command() {
@@ -110,8 +104,10 @@ prompt_command() {
 		fi
 	fi
 
+	# prompt char
+	[[ $(id -u) = 0 ]] && local promptchar="#" || local promptchar="$"
 
-	PS1="(\$(date "+%H:%M"))\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]${newPWD}\[${RS}\]${mygit}${promptchar} "
+	PS1="(\t)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]${newPWD}\[${RS}\]${mygit}\$ "
 }
 
 PROMPT_COMMAND=prompt_command
