@@ -3,26 +3,26 @@
 #
 
   # ANSI color codes
-RS="\e[0m"    # reset
-HC="\e[1m"    # hicolor
-UL="\e[4m"    # underline
-INV="\e[7m"   # inverse background and foreground
-FBLK="\e[30m" # foreground black
-FRED="\e[31m" # foreground red
-FGRN="\e[32m" # foreground green
-FYEL="\e[33m" # foreground yellow
-FBLE="\e[34m" # foreground blue
-FMAG="\e[35m" # foreground magenta
-FCYN="\e[36m" # foreground cyan
-FWHT="\e[37m" # foreground white
-BBLK="\e[40m" # background black
-BRED="\e[41m" # background red
-BGRN="\e[42m" # background green
-BYEL="\e[43m" # background yellow
-BBLE="\e[44m" # background blue
-BMAG="\e[45m" # background magenta
-BCYN="\e[46m" # background cyan
-BWHT="\e[47m" # background white
+RS="\033[0m"    # reset
+HC="\033[1m"    # hicolor
+UL="\033[4m"    # underline
+INV="\033[7m"   # inverse background and foreground
+FBLK="\033[30m" # foreground black
+FRED="\033[31m" # foreground red
+FGRN="\033[32m" # foreground green
+FYEL="\033[33m" # foreground yellow
+FBLE="\033[34m" # foreground blue
+FMAG="\033[35m" # foreground magenta
+FCYN="\033[36m" # foreground cyan
+FWHT="\033[37m" # foreground white
+BBLK="\033[40m" # background black
+BRED="\033[41m" # background red
+BGRN="\033[42m" # background green
+BYEL="\033[43m" # background yellow
+BBLE="\033[44m" # background blue
+BMAG="\033[45m" # background magenta
+BCYN="\033[46m" # background cyan
+BWHT="\033[47m" # background white
 
 
 WORKSTATIONS="aqua blue cyan diamond emerald honey neon orange pink silver taupe violet xray yellow"
@@ -71,16 +71,21 @@ else
 	fi
 fi
 
+_git_ps1() {
+	local mygit="$(git symbolic-ref --short HEAD 2>/dev/null)";
+	if [ "$(echo "$mygit" | wc -m)" -gt 16 ]; then
+		mygit="…$(echo $mygit | tail -c 16)"
+	fi
+	echo -e $mygit
+}
 
-
-prompt_command() {
-	# autoshrink pwd
+_pwd_ps1() {
 	local newPWD=""
 	local fracLim=4
 
 	if [ $HOME == $PWD ]; then
 		newPWD="~"
-	elif [ $HOME ==  ${PWD:0:${#HOME}} ]; then
+	elif [ $HOME == ${PWD:0:${#HOME}} ]; then
 		newPWD="~${PWD:${#HOME}}"
 	else
 		newPWD=$PWD
@@ -92,22 +97,15 @@ prompt_command() {
 		newPWD=$( echo $newPWD | cut -d"/" -f 2- )
 		fields=$((fields - 1))
 	done
-	
-	# auto-git
-	local mygit="$(git symbolic-ref --short HEAD 2>/dev/null)";
-	if [ -n "$mygit" ]; then
-		if [ "$(echo "$mygit" | wc -m)" -gt 16 ]; then
-			mygit=$(echo $mygit | tail -c 16)
-			mygit="[${FYEL}…${mygit}${RS}]"
-		else
-			mygit="[${FYEL}${mygit}${RS}]"
-		fi
+	echo $newPWD
+}
+
+prompt_command() {
+	if [[ -n "$(git symbolic-ref --short HEAD 2>/dev/null)" ]]; then
+		PS1="(\t)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\][\[${FYEL}\]\$(_git_ps1)\[${RS}\]]\$ "
+	else
+		PS1="(\t)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\]\$ "
 	fi
-
-	# prompt char
-	[[ $(id -u) = 0 ]] && local promptchar="#" || local promptchar="$"
-
-	PS1="(\t)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]${newPWD}\[${RS}\]${mygit}\$ "
 }
 
 PROMPT_COMMAND=prompt_command
