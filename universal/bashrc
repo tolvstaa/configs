@@ -102,9 +102,9 @@ _pwd_ps1() {
 
 prompt_command() {
 	if [[ -n "$(git symbolic-ref --short HEAD 2>/dev/null)" ]]; then
-		PS1="(\t)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\][\[${FYEL}\]\$(_git_ps1)\[${RS}\]]\$ "
+		PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\][\[${FYEL}\]\$(_git_ps1)\[${RS}\]]\$ "
 	else
-		PS1="(\t)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\]\$ "
+		PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\]\$ "
 	fi
 }
 
