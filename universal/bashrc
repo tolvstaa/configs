@@ -100,16 +100,24 @@ _pwd_ps1() {
 	echo $newPWD
 }
 
+_cwd_ps1() {
+	if [ "$PWD" == "$HOME" ]; then
+		echo "~"
+	else
+		echo "${PWD##*/}"
+	fi
+}
+
 prompt_command() {
 	if [[ -n "$(git symbolic-ref --short HEAD 2>/dev/null)" ]]; then
 		if [ "$COLUMNS" -lt 120 ]; then # short git
-			PS1="[\[${FCYN}\]\u@\h\[${RS}\]|\[${FGRN}\]${PWD##*/}\[${RS}\]|\[${FYEL}\]\$(_git_ps1 8)\[${RS}\]]\$ "
+			PS1="[\[${FCYN}\]\u@\h\[${RS}\]|\[${FGRN}\]\$(_cwd_ps1)\[${RS}\]|\[${FYEL}\]\$(_git_ps1 8)\[${RS}\]]\$ "
 		else
 			PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\][\[${FYEL}\]\$(_git_ps1 16)\[${RS}\]]\$ "
 		fi
 	else
 		if [ "$COLUMNS" -lt 120 ]; then # short
-			PS1="[\[${FCYN}\]\u@\h\[${RS}\]|\[${FGRN}\]${PWD##*/}\[${RS}\]]\$ "
+			PS1="[\[${FCYN}\]\u@\h\[${RS}\]|\[${FGRN}\]\$(_cwd_ps1)\[${RS}\]]\$ "
 		else
 			PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\]\$ "
 		fi
