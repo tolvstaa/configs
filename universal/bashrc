@@ -73,8 +73,8 @@ fi
 
 _git_ps1() {
 	local mygit="$(git symbolic-ref --short HEAD 2>/dev/null)";
-	if [ "$(echo "$mygit" | wc -m)" -gt 16 ]; then
-		mygit="…$(echo $mygit | tail -c 16)"
+	if [ "$(echo "$mygit" | wc -m)" -gt $1 ]; then
+		mygit="…$(echo $mygit | tail -c $1)"
 	fi
 	echo -e $mygit
 }
@@ -102,9 +102,17 @@ _pwd_ps1() {
 
 prompt_command() {
 	if [[ -n "$(git symbolic-ref --short HEAD 2>/dev/null)" ]]; then
-		PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\][\[${FYEL}\]\$(_git_ps1)\[${RS}\]]\$ "
+		if [ "$COLUMNS" -lt 120 ]; then # short git
+			PS1="[\[${FCYN}\]\u@\h\[${RS}\]|\[${FGRN}\]${PWD##*/}\[${RS}\]|\[${FYEL}\]\$(_git_ps1 8)\[${RS}\]]\$ "
+		else
+			PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\][\[${FYEL}\]\$(_git_ps1 16)\[${RS}\]]\$ "
+		fi
 	else
-		PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\]\$ "
+		if [ "$COLUMNS" -lt 120 ]; then # short
+			PS1="[\[${FCYN}\]\u@\h\[${RS}\]|\[${FGRN}\]${PWD##*/}\[${RS}\]]\$ "
+		else
+			PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\]\$ "
+		fi
 	fi
 }
 
