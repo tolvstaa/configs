@@ -5,3 +5,4 @@ alias ccat='spc' #p~
 alias yaourt-update='yaourt -Sbu --aur --noconfirm' #p~
 alias aliases='~/scripts/print_aliases.sh' #p~
 alias pacman='sudo pacman'
+alias dammit='sudo bash -c "$(history -p !!)"' #p~
