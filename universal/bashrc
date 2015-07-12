@@ -25,8 +25,7 @@ BCYN="\033[46m" # background cyan
 BWHT="\033[47m" # background white
 
 
-WORKSTATIONS="aqua blue cyan diamond emerald honey neon orange pink silver taupe violet xray yellow"
-
+# Every machine
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -37,6 +36,8 @@ fi
 
 alias ls='ls -l --color=auto'
 alias grep='grep -E --color'
+export EDITOR=vim
+export VISUAL=vim
 
 auto_ssh_key() {
 	for key in $(command ls -1 ~/.ssh | grep -E 'rsa[^\.]*$'); do
@@ -44,6 +45,8 @@ auto_ssh_key() {
 	done
 }
 
+# Machine-specific
+WORKSTATIONS="aqua blue cyan diamond emerald honey neon orange pink silver taupe violet xray yellow"
 if [[ $WORKSTATIONS =~ $(hostname) ]]; then
 	#OSL Host stuff
 	export HISTFILESIZE=10000000000
