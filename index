@@ -1,0 +1,5 @@
+##universal
+	.bash_aliases	~
+	.bashrc			~
+	.vimrc			~
+	htoprc			.config/htop
