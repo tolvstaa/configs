@@ -10,5 +10,7 @@ set colorcolumn=80
 colorscheme darkblue
 au FileType sh colorscheme delek
 
-:command Q q
-:command W w
+cnoreabbrev Q q
+cnoreabbrev W w
+cnoreabbrev c80 colorcolumn=80
+cnoreabbrev noc80 colorcolumn=
