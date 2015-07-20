@@ -4,4 +4,7 @@
 	.vimrc			~
 	htoprc			.config/htop
 
-##special
+##i3
+	config			~
+	i3lockscript.sh	~
+	i3statusconfig	~
