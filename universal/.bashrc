@@ -36,8 +36,14 @@ fi
 
 alias ls='ls -l --color=auto'
 alias grep='grep -E --color'
-export EDITOR=vim
-export VISUAL=vim
+
+if which vim &>/dev/null; then
+	export EDITOR=vim
+	export VISUAL=vim
+else
+	export EDITOR=vi
+	export VISUAL=vi
+fi
 
 auto_ssh_key() {
 	for key in $(command ls -1 ~/.ssh | grep -E 'rsa[^\.]*$'); do
