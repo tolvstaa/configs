@@ -33,41 +33,52 @@ elif [ ! -r $indexfile ] || [ ! -s $indexfile ]; then
 	exit 1
 fi
 
-printf "Using index file '${HL}${indexfile}${RS}'\n"
+printf "Using index file '${HL}${indexfile}${RS}'\n\n"
 
 
 
 # validate index syntax
 if ! isCat $(head $indexfile -n1); then
-	printf "Incorrect syntax in index '${ERR}${indexfile}${RS}'. Aborting.\n\n"
+	printf "Incorrect syntax at head of index '${ERR}${indexfile}${RS}'. Aborting.\n\n"
 	exit 1;
 fi
 
 # validate index contents
 cat=""
 item=""
+broken=false
 while read line; do
 	if [ "$(echo $line | awk '{print NF}')" -ne 0 ]; then
 		if isCat $line; then
 			# validate category
 			cat=${line:2}
 			if [ ! -d ${confdir}/$cat ]; then
-				printf "Configuration mismatch found:\n"
-				printf "\tDirectory '${ERR}${cat}${RS}' not in '${ERR}${confdir}${RS}'. Aborting.\n\n"
-				exit 1
+				printf "Configuration mismatch: "
+				printf "Directory '${ERR}${cat}${RS}' not in '${ERR}${confdir}${RS}'.\n"
+				broken=true
 			fi
 		else
 			# validate item
-			item=
-			if [ ! -r ${confdir}/${cat}/$item ]; then
-				printf "Configuration mismatch found:\n"
-				printf "\tFile '${ERR}${item}${RS}' not in '${ERR}${confdir}/${cat}${RS}'. Aborting.\n\n"
+			item=$(echo $line | awk '{print $1}')
+			if [ "$(echo $line | awk '{print NF}')" -eq 2 ]; then
+				if [ ! -r ${confdir}/${cat}/$item ]; then
+					printf "Configuration mismatch: "
+					printf "File '${ERR}${item}${RS}' not in '${ERR}${confdir}/${cat}${RS}'.\n"
+					broken=true
+				fi
+			else
+				printf "Configuration syntax error: "
+				printf "Incorrect parameters for '${ERR}${cat}/${item}${RS}'.\n"
+				broken=true
 			fi
 		fi
 	fi
 done < $indexfile
 
-
+if [ "$broken" = true ]; then
+	printf "\nErrors detected in config file. Aborting.\n\n"
+	exit 1
+fi
 
 
 # get categories
@@ -75,7 +86,7 @@ declare -a categories=($(grep -e '^##' $indexfile | cut -c3-))
 
 
 #print categories
-printf "\nCategories:\n"
+printf "Categories:\n"
 printf "\t%s\n" ${categories[@]}
 
 

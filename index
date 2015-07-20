@@ -1,10 +1,11 @@
 ##universal
 	.bash_aliases		~
-	.bashrc			~
-	.vimrc			~
-	htoprc			.config/htop
+	.bashrc				~			
+	.vimrc				~
+	htoprc				.config/htop
 
 ##i3
 	config			~
 	i3lockscript.sh	~
 	i3statusconfig	~
+
