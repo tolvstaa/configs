@@ -34,9 +34,6 @@ if [ -f ~/.keychain/$HOSTNAME-sh ]; then # Fix gpg issue regardless of host
 	. ~/.keychain/$HOSTNAME-sh
 fi
 
-alias ls='ls -l --color=auto'
-alias grep='grep -E --color'
-
 if which vim &>/dev/null; then
 	export EDITOR=vim
 	export VISUAL=vim

@@ -6,3 +6,6 @@ alias yaourt-update='yaourt -Sbu --aur --noconfirm' #p~
 alias aliases='~/scripts/print_aliases.sh' #p~
 alias pacman='sudo pacman'
 alias dammit='sudo bash -c "$(history -p !!)"' #p~
+alias ls='ls -l --color=auto'
+alias grep='grep -E --color'
+
