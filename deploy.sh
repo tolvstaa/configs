@@ -40,8 +40,8 @@ cat=""
 item=""
 broken=false
 while read line; do
-	[ "$(echo $line | awk '{print NF}')" -ne 0 ] && (
-		isCat $line && (
+	if [ "$(echo $line | awk '{print NF}')" -ne 0 ]; then
+		if isCat $line; then
 			# validate category
 			cat=${line:2}
 			[ -d ${confdir}/$cat ] || (
@@ -49,7 +49,7 @@ while read line; do
 				printf "Directory '${ERR}${cat}${RS}' not in '${ERR}${confdir}${RS}'.\n"
 				broken=true
 			)
-		) || (
+		else
 			# validate item
 			item=$(echo $line | awk '{print $1}')
 			[ "$(echo $line | awk '{print NF}')" -eq 2 ] && (
@@ -63,8 +63,8 @@ while read line; do
 				printf "Incorrect parameters for '${ERR}${cat}/${item}${RS}'.\n"
 				broken=true
 			)
-		)
-	)
+		fi
+	fi
 done < $indexfile
 
 [ "$broken" = true ] && ( printf "\nErrors detected in config file. Aborting.\n\n"; exit 1 )
