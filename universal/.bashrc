@@ -66,11 +66,14 @@ if [[ $WORKSTATIONS =~ $(hostname) ]]; then
 	alias ff='ssh -t fir sudo vim /root/.../firfile'
 	alias vpn='sudo openvpn ~/.openvpn/openvpn.conf'
 	alias mr="mr -j 8 $@"
-elif [[ $(hostname) = "avalon-arch" ]]; then
+elif [ "$HOSTNAME" = "avalon-arch" ]; then
 	#Avalon stuff
 	if [ -z $(pidof gpg-agent) ]; then
 		auto_ssh_key
 	fi
+elif [ "$HOSTNAME" = "thule" ]; then
+	script /dev/null
+	auto_ssh_key
 else
 	if which keychain &>/dev/null; then
 		auto_ssh_key
