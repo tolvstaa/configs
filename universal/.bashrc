@@ -88,37 +88,37 @@ fi
 # Prompt colors
 _chost=$FGRN
 _cpath=$FCYN
-_cgit= $FYEL
+_cgit=$FYEL
 
 if   [[ $HOSTNAME =~ "avalon" ]]; then
 	_chost=$FCYN
 	_cpath=$FGRN
-	_cgit= $FYEL
+	_cgit=$FYEL
 
 elif [ "$HOSTNAME" = "atlantis" ]; then
 	_chost=$FGRN
 	_cpath=$FYEL
-	_cgit= $FRED
+	_cgit=$FRED
 
 elif [ "$HOSTNAME" = "valhalla" ]; then
 	_chost=$FYEL
 	_cpath=$FRED
-	_cgit= $FMAG
+	_cgit=$FMAG
 
 elif [ "$HOSTNAME" = "xibalba" ]; then
 	_chost=$FRED
 	_cpath=$FMAG
-	_cgit= $FBLE
+	_cgit=$FBLE
 
 elif [ "$HOSTNAME" = "thule" ]; then
 	_chost=$FMAG
 	_chost=$FBLE
-	_cgit= $FCYN
+	_cgit=$FCYN
 
 elif [[ $_workstations =~ $HOSTNAME ]]; then
 	_chost=$FBLE
 	_cpath=$FCYN
-	_cgit= $FGRN
+	_cgit=$FGRN
 fi
 
 
