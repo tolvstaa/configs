@@ -49,8 +49,8 @@ auto_ssh_key() {
 }
 
 # Machine-specific
-WORKSTATIONS="aqua blue cyan diamond emerald honey neon orange pink silver taupe violet xray yellow"
-if [[ $WORKSTATIONS =~ $(hostname) ]]; then
+_workstations="aqua blue cyan diamond emerald honey neon orange pink silver taupe violet xray yellow"
+if [[ $_workstations =~ $HOSTNAME ]]; then
 	#OSL Host stuff
 	export HISTFILESIZE=10000000000
 	export HISTTIMEFORMAT="%F %T "
@@ -84,6 +84,44 @@ else
 	fi
 fi
 
+
+# Prompt colors
+_chost=$FGRN
+_cpath=$FCYN
+_cgit= $FYEL
+
+if   [[ $HOSTNAME =~ "avalon" ]]; then
+	_chost=$FCYN
+	_cpath=$FGRN
+	_cgit= $FYEL
+
+elif [ "$HOSTNAME" = "atlantis" ]; then
+	_chost=$FGRN
+	_cpath=$FYEL
+	_cgit= $FRED
+
+elif [ "$HOSTNAME" = "valhalla" ]; then
+	_chost=$FYEL
+	_cpath=$FRED
+	_cgit= $FMAG
+
+elif [ "$HOSTNAME" = "xibalba" ]; then
+	_chost=$FRED
+	_cpath=$FMAG
+	_cgit= $FBLE
+
+elif [ "$HOSTNAME" = "thule" ]; then
+	_chost=$FMAG
+	_chost=$FBLE
+	_cgit= $FCYN
+
+elif [[ $_workstations =~ $HOSTNAME ]]; then
+	_chost=$FBLE
+	_cpath=$FCYN
+	_cgit= $FGRN
+fi
+
+
 _git_ps1() {
 	local mygit="$(git symbolic-ref --short HEAD 2>/dev/null)";
 	if [ "$(echo "$mygit" | wc -m)" -gt $1 ]; then
@@ -116,15 +154,15 @@ _pwd_ps1() {
 prompt_command() {
 	if [[ -n "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
 		if [ -n "$COLUMNS" ] && [ "$COLUMNS" -lt 120 ]; then # short git
-			PS1="[\[${FCYN}\]\u@\h\[${RS}\]|\[${FGRN}\]\W\[${RS}\]|\[${FYEL}\]\$(_git_ps1 8)\[${RS}\]]\$ "
+			PS1="[\[${_chost}\]\u@\h\[${RS}\]|\[${_cpath}\]\W\[${RS}\]|\[${_cgit}\]\$(_git_ps1 8)\[${RS}\]]\$ "
 		else
-			PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\][\[${FYEL}\]\$(_git_ps1 16)\[${RS}\]]\$ "
+			PS1="(\A)\[${_chost}\]\u@\h\[${RS}\]:\[${_cpath}\]\$(_pwd_ps1)\[${RS}\][\[${_cgit}\]\$(_git_ps1 16)\[${RS}\]]\$ "
 		fi
 	else
 		if [ -n "$COLUMNS" ] && [ "$COLUMNS" -lt 120 ]; then # short
-			PS1="[\[${FCYN}\]\u@\h\[${RS}\]|\[${FGRN}\]\W\[${RS}\]]\$ "
+			PS1="[\[${_chost}\]\u@\h\[${RS}\]|\[${_cpath}\]\W\[${RS}\]]\$ "
 		else
-			PS1="(\A)\[${FCYN}\]\u@\h\[${RS}\]:\[${FGRN}\]\$(_pwd_ps1)\[${RS}\]\$ "
+			PS1="(\A)\[${_chost}\]\u@\h\[${RS}\]:\[${_cpath}\]\$(_pwd_ps1)\[${RS}\]\$ "
 		fi
 	fi
 }
