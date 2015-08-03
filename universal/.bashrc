@@ -112,7 +112,7 @@ elif [ "$HOSTNAME" = "xibalba" ]; then
 
 elif [ "$HOSTNAME" = "thule" ]; then
 	_chost=$FMAG
-	_chost=$FBLE
+	_cpath=$FBLE
 	_cgit=$FCYN
 
 elif [[ $_workstations =~ $HOSTNAME ]]; then
