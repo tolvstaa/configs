@@ -8,9 +8,11 @@ set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 set cindent
 set colorcolumn=80
 colorscheme darkblue
+au BufNewFile,BufRead *.rs set filetype=rust
 au FileType sh colorscheme delek
 
 cnoreabbrev Q q
 cnoreabbrev W w
+cnoreabbrev Wq wq
 cnoreabbrev c80 colorcolumn=80
 cnoreabbrev noc80 colorcolumn=
