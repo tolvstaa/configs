@@ -123,7 +123,7 @@ fi
 
 
 _git_ps1() {
-	local mygit="$(git symbolic-ref --short HEAD 2>/dev/null)";
+	local mygit="$(basename $(git symbolic-ref HEAD 2>/dev/null))";
 	if [ "$(echo "$mygit" | wc -m)" -gt $1 ]; then
 		mygit="…$(echo $mygit | tail -c $1)"
 	fi
