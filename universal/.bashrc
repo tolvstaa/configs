@@ -66,6 +66,7 @@ if [[ $_workstations =~ $HOSTNAME ]]; then
 	alias ff='ssh -t fir sudo vim /root/.../firfile'
 	alias vpn='sudo openvpn ~/.openvpn/openvpn.conf'
 	alias mr="mr -j 8 $@"
+	. .openstackcfg
 elif [ "$HOSTNAME" = "avalon-arch" ]; then
 	#Avalon stuff
 	if [ -z $(pidof gpg-agent) ]; then
