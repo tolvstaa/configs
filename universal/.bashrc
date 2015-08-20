@@ -74,12 +74,12 @@ elif [ "$HOSTNAME" = "avalon-arch" ]; then
 		auto_ssh_key
 	fi
 elif [ "$HOSTNAME" = "thule" ]; then
-	if [ "$(cat ~/.gscnlk 2>/dev/null)" != "$(date +%d%m%y%H%M%S)" ]; then
-		date +%d%m%y%H%M%S > ~/.gscnlk
-		script -q /dev/null
-	else
+	#if [ "$(cat ~/.gscnlk 2>/dev/null)" != "$(date +%d%m%y%H%M%S)" ]; then
+	#	date +%d%m%y%H%M%S > ~/.gscnlk
+	#	script -q /dev/null
+	#else
 		auto_ssh_key
-	fi
+	#fi
 else
 	if which keychain &>/dev/null; then
 		auto_ssh_key
