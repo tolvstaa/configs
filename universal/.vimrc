@@ -11,6 +11,7 @@ set colorcolumn=80
 colorscheme darkblue
 au BufNewFile,BufRead *.rs set filetype=rust
 au FileType sh colorscheme delek
+au FileType rust colorscheme delek
 
 cnoreabbrev Q q
 cnoreabbrev W w
