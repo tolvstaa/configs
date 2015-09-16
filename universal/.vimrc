@@ -7,7 +7,6 @@ set mouse=a
 set backspace=2
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 set cindent
-set colorcolumn=80
 colorscheme darkblue
 au BufNewFile,BufRead *.rs set filetype=rust
 au FileType sh colorscheme delek
