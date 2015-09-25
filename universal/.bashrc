@@ -80,6 +80,8 @@ elif [ "$HOSTNAME" = "thule" ]; then
 	#else
 		auto_ssh_key
 	#fi
+elif [ "$HOSTNAME" = "xibalba" ]; then
+	cat /proc/mdstat
 else
 	if which keychain &>/dev/null; then
 		auto_ssh_key
