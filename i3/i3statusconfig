@@ -8,7 +8,7 @@
 
 general {
         colors = true
-        interval = 5
+        interval = 2
 }
 
 #order += "ipv6"
@@ -17,8 +17,8 @@ order += "disk /"
 #order += "run_watch VPN"
 #order += "wireless wlan0"
 #order += "ethernet eth0"
-#order += "battery 0"
 order += "load"
+#order += "battery 1"
 order += "tztime local"
 
 #wireless wlan0 {
@@ -32,7 +32,7 @@ order += "tztime local"
 #        format_down = "E: down"
 #}
 
-#battery 0 {
+#battery 1 {
 #        format = "%status %percentage %remaining"
 #}
 
