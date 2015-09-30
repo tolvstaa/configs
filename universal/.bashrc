@@ -82,6 +82,8 @@ elif [ "$HOSTNAME" = "thule" ]; then
 	#fi
 elif [ "$HOSTNAME" = "xibalba" ]; then
 	cat /proc/mdstat
+elif [ "$(hostname -A | cut -d"." -f2-)" == "engr.oregonstate.edu" ]; then
+	
 else
 	if which keychain &>/dev/null; then
 		auto_ssh_key
