@@ -2,6 +2,12 @@
 # ~/.bashrc
 #
 
+# If not running interactively, don't do anything
+case $- in
+	*i*) ;;
+	*) return;;
+esac
+	
   # ANSI color codes
 RS="\033[0m"    # reset
 HC="\033[1m"    # hicolor
@@ -83,7 +89,7 @@ elif [ "$HOSTNAME" = "thule" ]; then
 elif [ "$HOSTNAME" = "xibalba" ]; then
 	cat /proc/mdstat
 elif [ "$(hostname -A | cut -d"." -f2-)" == "engr.oregonstate.edu" ]; then
-	
+	auto_ssh_key
 else
 	if which keychain &>/dev/null; then
 		auto_ssh_key
