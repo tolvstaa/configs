@@ -28,8 +28,8 @@ font pango:Arial Regular 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
-bindsym $mod+t		exec terminator
+bindsym $mod+t		exec gnome-terminal
+bindsym $mod+Return	exec terminator
 
 # kill focused window
 bindsym $mod+c kill
