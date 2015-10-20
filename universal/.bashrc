@@ -165,13 +165,13 @@ _pwd_ps1() {
 
 prompt_command() {
 	if [[ -n "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
-		if [ -n "$COLUMNS" ] && [ "$COLUMNS" -lt 120 ]; then # short git
+		if [ -n "$COLUMNS" ] && [ "$COLUMNS" -lt 100 ]; then # short git
 			PS1="[\[${_chost}\]\u@\h\[${RS}\]|\[${_cpath}\]\W\[${RS}\]|\[${_cgit}\]\$(_git_ps1 8)\[${RS}\]]\$ "
 		else
 			PS1="(\A)\[${_chost}\]\u@\h\[${RS}\]:\[${_cpath}\]\$(_pwd_ps1)\[${RS}\][\[${_cgit}\]\$(_git_ps1 16)\[${RS}\]]\$ "
 		fi
 	else
-		if [ -n "$COLUMNS" ] && [ "$COLUMNS" -lt 120 ]; then # short
+		if [ -n "$COLUMNS" ] && [ "$COLUMNS" -lt 100 ]; then # short
 			PS1="[\[${_chost}\]\u@\h\[${RS}\]|\[${_cpath}\]\W\[${RS}\]]\$ "
 		else
 			PS1="(\A)\[${_chost}\]\u@\h\[${RS}\]:\[${_cpath}\]\$(_pwd_ps1)\[${RS}\]\$ "
