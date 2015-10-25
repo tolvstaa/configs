@@ -89,7 +89,8 @@ elif [ "$HOSTNAME" = "thule" ]; then
 elif [ "$HOSTNAME" = "xibalba" ]; then
 	cat /proc/mdstat
 elif [ "$(hostname -d)" == "engr.oregonstate.edu" ]; then
-	auto_ssh_key
+	# to strip newline
+	echo $(uptime), $(free -b | sed -n '2p' | awk '{print " " int($3 / $2 * 100) "% RAM Usage"}')
 else
 	if which keychain &>/dev/null; then
 		auto_ssh_key
