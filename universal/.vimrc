@@ -11,6 +11,7 @@ colorscheme darkblue
 au BufNewFile,BufRead *.rs set filetype=rust
 au FileType sh colorscheme delek
 au FileType rust colorscheme delek
+:silent! execute pathogen#infect()
 
 cnoreabbrev Q q
 cnoreabbrev W w
