@@ -54,6 +54,10 @@ auto_ssh_key() {
 	done
 }
 
+detailed_stat() { 
+	echo $(uptime), $(free -b | sed -n '2p' | awk '{print " " int($3 / $2 * 100) "% RAM Usage"}')
+}
+
 # Machine-specific
 _workstations="aqua blue cyan diamond emerald honey neon orange pink silver taupe violet xray yellow"
 if [[ $_workstations =~ $HOSTNAME ]]; then
@@ -87,10 +91,10 @@ elif [ "$HOSTNAME" = "thule" ]; then
 		auto_ssh_key
 	#fi
 elif [ "$HOSTNAME" = "xibalba" ]; then
+	detailed_stat
 	cat /proc/mdstat
 elif [ "$(hostname -d)" == "engr.oregonstate.edu" ]; then
-	# to strip newline
-	echo $(uptime), $(free -b | sed -n '2p' | awk '{print " " int($3 / $2 * 100) "% RAM Usage"}')
+	detailed_stat
 else
 	if which keychain &>/dev/null; then
 		auto_ssh_key
