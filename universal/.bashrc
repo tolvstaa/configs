@@ -55,7 +55,7 @@ auto_ssh_key() {
 }
 
 detailed_stat() { 
-	echo $(uptime), $(free -b | sed -n '2p' | awk '{print " " int($3 / $2 * 100) "% RAM Usage"}')
+	echo $(uptime), $(free -b | sed -n '2p' | awk '{print " " int(($3 - ($6 + $7)) / $2 * 100) "% RAM Usage"}')
 }
 
 # Machine-specific
