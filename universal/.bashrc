@@ -93,7 +93,7 @@ elif [ "$HOSTNAME" = "thule" ]; then
 elif [ "$HOSTNAME" = "xibalba" ]; then
 	detailed_stat
 	cat /proc/mdstat
-elif [ "$(hostname -d)" == "engr.oregonstate.edu" ]; then
+elif [[ "$(hostname -d)" =~ "oregonstate.edu" ]]; then
 	detailed_stat
 else
 	if which keychain &>/dev/null; then
