@@ -5,7 +5,7 @@ set relativenumber
 set showmatch
 set mouse=a
 set backspace=2
-set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set cindent
 colorscheme darkblue
 au BufNewFile,BufRead *.rs set filetype=rust
